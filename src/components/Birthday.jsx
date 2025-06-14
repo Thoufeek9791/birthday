@@ -63,18 +63,18 @@ export const CountdownPage = () => {
   const [countDown, days, hours, minutes, seconds] = useCountdown(BIRTHDAY_DATE);
 
   useEffect(() => {
-    if (countDown <= 0) {
+    
       navigate("/name");
-    }
-  }, [countDown, navigate]);
+    
+  }, [navigate]);
 
-  useEffect(() => {
-    if ("vibrate" in navigator) {
-      navigator.vibrate([200, 100, 200]);
-    }
-    const audio = new Audio(AUDIO_URL);
-    audio.play();
-  }, []);
+//   useEffect(() => {
+//     if ("vibrate" in navigator) {
+//       navigator.vibrate([200, 100, 200]);
+//     }
+//     const audio = new Audio(AUDIO_URL);
+//     audio.play();
+//   }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 flex items-center justify-center text-center p-4">
@@ -124,7 +124,7 @@ export const NamePage = () => {
         />
 
         <motion.h1
-          className="text-3xl md:text-4xl font-bold text-white mb-2"
+          className="text-3xl md:text-4xl font-bold text-blue-500 mb-2"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8 }}
@@ -141,7 +141,7 @@ export const NamePage = () => {
           What Does {NAME} Stand For?
         </motion.h2>
 
-        <ul className="text-lg md:text-xl text-white space-y-3">
+        <ul className="text-lg md:text-xl text-blue-700 space-y-3">
           {ABBREVIATIONS.map((abbr, index) => (
             <motion.li
               key={index}
@@ -172,16 +172,16 @@ export const NamePage = () => {
           transition={{ duration: 0.8 }}
         >
           <h3 className="text-2xl font-bold mb-2">About Yasmeen</h3>
-          <p className="text-lg">
-            Yasmeen is a wonderful person filled with joy, creativity, and compassion. Her presence brings light and positivity to everyone around. She loves Cat, Chocolates, and making people smile. she stands in every tough situation.
+          <p className="text-lg text-gray-500">
+            Yasmeen is a wonderful person filled with joy, creativity, and compassion. Her presence brings light and positivity to everyone around. She loves Cat, Chocolates, and making people smile. she stands in every tough situation. She likes watching K-Dramas and korean movies and veg lover
           </p>
         </motion.div>
       </div>
       
 
-<div className="w-full max-w-4xl bg-white/10 backdrop-blur-lg border border-white/30 rounded-3xl shadow-2xl p-6 flex flex-col md:flex-row items-center md:space-x-6 text-white">
+      <div className="w-full max-w-4xl bg-white/10 backdrop-blur-lg border border-white/30 rounded-3xl shadow-2xl p-6 flex flex-col md:flex-row items-center md:space-x-6 text-white">
   <motion.img
-    src="https://i.pinimg.com/236x/2f/45/ef/2f45efca781cfb5bebc7b02d5612fef9.jpg" // Jungkook image
+    src="https://i.pinimg.com/236x/2f/45/ef/2f45efca781cfb5bebc7b02d5612fef9.jpg"
     alt="Jungkook"
     className="w-full md:w-64 h-auto object-contain rounded-2xl border-4 border-white mb-4 md:mb-0"
     initial={{ x: -100, opacity: 0 }}
@@ -189,17 +189,47 @@ export const NamePage = () => {
     transition={{ duration: 0.8 }}
   />
   <motion.div
-    className="text-left"
+    className="text-left w-full"
     initial={{ x: 100, opacity: 0 }}
     animate={{ x: 0, opacity: 1 }}
     transition={{ duration: 0.8 }}
   >
     <h3 className="text-2xl font-bold mb-2">Her Love for Jungkook (BTS)</h3>
-    <p className="text-lg">
+    <p className="text-lg mb-4 text-gray-500">
       Yasmeen is a proud BTS ARMY and her heart beats a little faster for Jungkook. His voice, charm, and dedication inspire her every day. From watching every live performance to collecting BTS merch, her admiration for him is pure and boundless.
+      <br /><br />
+      One of her favorite lines that touches her heart is from Jungkook’s “Euphoria”:<br />
+      <span className="italic text-pink-200">“You are the cause of my euphoria.”</span>
+      <br /><br />
+      Every time she hears it, it reminds her of the happiness and warmth his music brings into her life. 💜
     </p>
+    {/* 🎧 Audio Player */}
+    <div className="mt-4">
+    <iframe 
+        width="100%" 
+        height="120" 
+        scrolling="no" 
+        frameBorder="no" 
+        allow="autoplay" 
+        title="Euphoria by Jungkook" 
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/314566199&color=%23ff66cc&auto_play=false&show_artwork=true">
+      </iframe>
+
+    </div>
   </motion.div>
 </div>
+
+
+
+<motion.div
+  className="text-center text-white text-2xl font-bold mt-10 px-4"
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 1.2, ease: "easeOut", delay: 1 }}
+>
+  💖 This website is created with love by the loved one 💝❤️💫
+</motion.div>
+
     </div>
   );
 };
@@ -207,8 +237,8 @@ export const NamePage = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<CountdownPage />} />
-      <Route path="/name" element={<NamePage />} />
+      <Route path="/" element={<NamePage />} />
+      {/* <Route path="/name" element={<NamePage />} /> */}
     </>
   )
 );
